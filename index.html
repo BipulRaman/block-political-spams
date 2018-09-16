@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Political Spam Cleaner</title>
+    <meta name="description" content="Designed and developed by Bipul Raman">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+
+        // Function to retrieve a query string value.
+        function getQueryStringParameter(paramToRetrive) {
+            try {
+                var params = document.URL.split("?")[1].split("&");
+                for (var i = 0; i < params.length; i = i + 1) {
+                    var singleParam = params[i].split("=");
+                    if (singleParam[0] == paramToRetrive) return singleParam[1];
+                }
+            }
+            catch (e) {
+                console.log('No Query Sring Found');
+            }
+        }
+        function validateForm() {
+            submitted = true;
+        }
+        function onSuccessfulSubmission() {
+            document.getElementById('ss-form').reset();
+            document.getElementById('status').style.display = 'block';
+        }
+    </script>
+    <style>
+        body{font-family: Segoe UI}
+        .btn-submit{width: 100px; height: 30px;}
+        textarea{font-family: Courier New}
+    </style>
+</head>
+
+<body>
+    <div id="info" style="display:none">
+        <h2>Project : Political Spam Cleaner</h2>
+        <p>Install Firefox Plugin from here: <a href="https://addons.mozilla.org/en-US/firefox/addon/block-political-spams/">https://addons.mozilla.org/en-US/firefox/addon/block-political-spams/</a></p>
+    </div>
+    <div style="display:none">
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display: none" onload="if(submitted==true){onSuccessfulSubmission(); return false;}"></iframe>
+        <form name="spamSubmissionForm" action="https://docs.google.com/forms/d/e/1FAIpQLScea7eFnBy1MmAA1494VgxeRJjTrGJtY6dj_SqGS1SaTHiJGg/formResponse"
+            onsubmit="validateForm()" method="POST" id="ss-form" target="hidden_iframe">
+            <div>
+                <label>Spammers List: </label><br>
+                <textarea rows="4" cols="50" name="entry.1189387105" id="entry_1189387105" required=""></textarea>
+                <br>
+            </div>
+            <br>
+            <input class="btn-submit" type="submit" name="submit" value="Submit" id="ss-submit">
+            <br>
+        </form>
+    </div>
+    <h5 id="status" style="display:none">Your report successfully submitted !!</h5>
+    <script>
+        var reportString = getQueryStringParameter('r');
+        if (reportString != null && reportString != "") {
+            document.getElementById('entry_1189387105').value = reportString.replace(/;/g, "\n");
+            document.getElementById('ss-submit').click();
+        }
+        else {
+            document.getElementById('info').style.display = 'block';
+        }
+
+    </script>
+</body>
+
+</html>
