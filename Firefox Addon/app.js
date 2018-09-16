@@ -13,9 +13,6 @@ var url = baseURL + "/app/data/blacklist.json?t=" + xTime;
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         blacklist = JSON.parse(this.responseText);
-        Array.from(blacklist).forEach(function(eachItem){
-            console.log(eachItem);
-        });        
         setInterval(function () {
             removeSpamPost();
         }, 1000)
