@@ -1,3 +1,4 @@
+var baseURL = "https://web.bipul.in/block-political-spams"
 var xmlhttp = new XMLHttpRequest();
 var blacklist;
 
@@ -8,7 +9,7 @@ function getFormattedDate() {
 }
 
 var xTime = getFormattedDate();
-var url = "blacklist.json?t=" + xTime;
+var url = baseURL + "/data/blacklist.json?t=" + xTime;
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         blacklist = JSON.parse(this.responseText);
@@ -33,7 +34,7 @@ function removeSpamPost() {
                     xLinks_ReportString = xLinks_ReportString + eachLink.href.split("?")[0] + ";";
                 }
             })    
-            var appendHTML = "<a name='fbFakeNewsReporter' style='padding-left:5px;' href='https://fbr.bipul.in?r=" + xLinks_ReportString + "' target='_blank'>Report Fake News</a>" 
+            var appendHTML = "<a name='fbFakeNewsReporter' style='padding-left:5px;' href='"+ baseURL +"/app/?r=" + xLinks_ReportString + "' target='_blank'>Report Fake News</a>" 
             if (element.querySelectorAll("div[id^='feed_subtitle_']")[0].innerHTML.includes('fbFakeNewsReporter') == false) {
                 element.querySelectorAll("div[id^='feed_subtitle_']")[0].innerHTML = element.querySelectorAll("div[id^='feed_subtitle_']")[0].innerHTML + appendHTML;
             }
