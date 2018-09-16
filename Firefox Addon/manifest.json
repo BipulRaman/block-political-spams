@@ -1,0 +1,25 @@
+{
+    "description": "Block Political Spams / fake posts in your facebook newsfeed.",
+    "manifest_version": 2,
+    "name": "Block Political Spams -",
+    "author": "Bipul Raman",
+    "version": "0.15",
+    "homepage_url": "https://fbr.bipul.in",
+    "icons": {
+        "48": "logo.png"
+    },
+    "permissions": [
+        "webRequest",
+        "<all_urls>"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://www.facebook.com/*"
+            ],
+            "js": [
+                "app.js"
+            ]
+        }
+    ]
+}
