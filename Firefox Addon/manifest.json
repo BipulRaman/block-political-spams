@@ -3,8 +3,8 @@
     "manifest_version": 2,
     "name": "Block Political Spams",
     "author": "Bipul Raman",
-    "version": "1.01",
-    "homepage_url": "https://fbr.bipul.in",
+    "version": "1.1",
+    "homepage_url": "https://github.com/BipulRaman/block-political-spams",
     "icons": {
         "48": "logo.png"
     },
