@@ -10,7 +10,7 @@ function getFormattedDate() {
 
 var xTime = getFormattedDate();
 var url = baseURL + "/data/blacklist.json?t=" + xTime;
-xmlhttp.onreadystatechange = function() {
+xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         blacklist = JSON.parse(this.responseText);
         readArray(blacklist);
@@ -24,7 +24,6 @@ xmlhttp.send();
 
 function removeSpamPost() {
     try {
-        //var x = document.getElementsByClassName('_5pcr');
         var x = document.querySelectorAll("div[id^='hyperfeed_story_id_']");
         Array.from(x).forEach(function (element) {
             var xLinks = element.getElementsByTagName('a');
@@ -33,15 +32,15 @@ function removeSpamPost() {
                 if (eachLink.href != '#' && xLinks_ReportString.includes(eachLink.href.split("?")[0]) == false && eachLink.href.includes('facebook.com/ajax') == false && eachLink.href.includes('facebook.com/l.php') == false && eachLink.href.includes('facebook.com/ufi') == false && eachLink.href.includes('facebook.com/photo.php') == false) {
                     xLinks_ReportString = xLinks_ReportString + eachLink.href.split("?")[0] + ";";
                 }
-            })    
-            var appendHTML = "<a name='fbFakeNewsReporter' style='padding-left:5px;' href='"+ baseURL +"/app/?r=" + xLinks_ReportString + "' target='_blank'>Report Fake News</a>" 
+            })
+            var appendHTML = "<a name='fbFakeNewsReporter' style='padding-left:5px;' href='" + baseURL + "/app/?r=" + xLinks_ReportString + "' target='_blank'>Report Fake News</a>"
             if (element.querySelectorAll("div[id^='feed_subtitle_']")[0].innerHTML.includes('fbFakeNewsReporter') == false) {
                 element.querySelectorAll("div[id^='feed_subtitle_']")[0].innerHTML = element.querySelectorAll("div[id^='feed_subtitle_']")[0].innerHTML + appendHTML;
             }
             Array.from(blacklist).forEach(function (item) {
-                if (element.innerHTML.includes(item)) {                    
+                if (element.innerHTML.includes(item)) {
                     element.remove();
-                   // element.style.backgroundColor = "yellow";
+                    // element.style.backgroundColor = "yellow";
                 }
             });
         });
